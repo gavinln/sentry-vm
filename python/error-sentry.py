@@ -1,6 +1,7 @@
 from raven import Client
 
-client = Client('http://395f5c80b0a948f7acae201285c15a7a:c5074aa9132e4fa580fed276c338b72f@localhost:8080/2')
+
+client = Client('http://89dd6d7f4a8e4c07b21dc8f38a8b39c6:063921ba4690414aa911ae939ac56b22@fefinance1-5810:8080/2')
 
 try:
     1 / 0
