@@ -61,8 +61,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "sentry-vm", autostart: true do |machine|
     machine.vm.provider "virtualbox" do |vb|
-      # vb.gui = true
-      vb.memory = "2048"
+      vb.gui = true
+      vb.memory = "4096"
       vb.cpus = "1"
 
       if Vagrant::Util::Platform.windows? then

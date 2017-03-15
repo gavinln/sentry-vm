@@ -1,3 +1,6 @@
 ---
 - name: Install lxde
   apt: name=lxde state=installed
+
+- name: Install lxde-common
+  apt: name=lxde-common state=installed
