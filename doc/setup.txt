@@ -5,14 +5,21 @@ Installing using docker-compose
 https://gist.github.com/puppybits/426319191bd4981cf6c8d9b6b06c6d46
 https://github.com/Hainish/sentry
 
+Add user to Docker group
+sudo gpasswd -a ${USER} docker
+
+# Change to the sentry folder
+cd /vagrant/sentry
+
 # Generate Sentry secret key and update docker-compose.yaml
 docker run --rm sentry:8.13 config generate-secret-key
 
 # update sentry-setup-secret.sh with the following line
-# export SENTRY_SECRET_KEY=
+# export SENTRY_SECRET_KEY=''
+vim /vagrant/do_not_checkin/sentry-setup-secret.sh
 
 # run sentry-setup-secret.sh
-source sentry-setup-secret.sh
+source /vagrant/do_not_checkin/sentry-setup-secret.sh
 
 # Databases
 docker-compose up -d redis postgres sentry
@@ -31,3 +38,9 @@ docker exec -it --user=root $SENTRY_ID bash
 
 
 sudo apt-get install --no-install-recommends lubuntu-desktop
+
+Setup CLI
+curl -sL https://sentry.io/get-cli/ | bash
+
+export SENTRY_AUTH=
+sentry-cli --url http://localhost:8080/ --auth-token $SENTRY_AUTH info

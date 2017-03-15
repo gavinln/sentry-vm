@@ -1,6 +1,6 @@
 ---
-# - name: upgrade system and packages
-#   apt: upgrade=dist
+- name: upgrade system and packages
+  apt: upgrade=dist
 #
 # - name: install python dev
 #   apt: name=python-dev state=installed
