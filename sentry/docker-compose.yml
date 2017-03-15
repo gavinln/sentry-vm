@@ -6,9 +6,9 @@ postgres:
   image: postgres
   environment:
     - POSTGRES_PASSWORD=sentry
-    - POSTGRES_USER=sentry
+    - POSTGRES_USER=postgres
   volumes:
-    - /var/lib/postgresql/data
+    - /var/lib/postgresql/data:/var/lib/postgresql/data
 
 sentry:
   image: sentry:8.13

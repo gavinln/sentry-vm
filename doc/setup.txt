@@ -29,3 +29,5 @@ docker-compose up -d
 # Run bash in sentry as root
 docker exec -it --user=root $SENTRY_ID bash
 
+
+sudo apt-get install --no-install-recommends lubuntu-desktop

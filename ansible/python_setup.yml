@@ -10,3 +10,6 @@
 
 - name: install stormssh
   pip: name=stormssh state=present
+
+- name: install raven (sentry client)
+  pip: name=raven state=present
