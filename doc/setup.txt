@@ -1,0 +1,31 @@
+Installation using Docker
+https://hub.docker.com/_/sentry/
+
+Installing using docker-compose
+https://gist.github.com/puppybits/426319191bd4981cf6c8d9b6b06c6d46
+https://github.com/Hainish/sentry
+
+# Generate Sentry secret key and update docker-compose.yaml
+docker run --rm sentry:8.13 config generate-secret-key
+
+# update sentry-setup-secret.sh with the following line
+# export SENTRY_SECRET_KEY=
+
+# run sentry-setup-secret.sh
+source sentry-setup-secret.sh
+
+# Databases
+docker-compose up -d redis postgres sentry
+
+# Get Sentry container id
+SENTRY_ID=$(docker ps -aq -f 'ancestor=sentry:8.13')
+
+# For a new database run an upgrade
+docker exec -it $SENTRY_ID sentry upgrade
+
+# Run the remaining containers (Celery)
+docker-compose up -d
+
+# Run bash in sentry as root
+docker exec -it --user=root $SENTRY_ID bash
+

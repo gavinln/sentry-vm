@@ -1,0 +1,39 @@
+# From: https://gist.github.com/puppybits/426319191bd4981cf6c8d9b6b06c6d46
+redis:
+  image: redis
+
+postgres:
+  image: postgres
+  environment:
+    - POSTGRES_PASSWORD=sentry
+    - POSTGRES_USER=sentry
+  volumes:
+    - /var/lib/postgresql/data
+
+sentry:
+  image: sentry:8.13
+  ports:
+    - "8080:9000"
+  links:
+    - redis
+    - postgres
+  environment:
+    - SENTRY_SECRET_KEY=$SENTRY_SECRET_KEY
+
+sentry-cron:
+  image: sentry:8.13
+  command: sentry run cron
+  links:
+    - redis
+    - postgres
+  environment:
+    - SENTRY_SECRET_KEY=$SENTRY_SECRET_KEY
+
+sentry-worker:
+  image: sentry:8.13
+  command: sentry run worker
+  links:
+    - redis
+    - postgres
+  environment:
+    - SENTRY_SECRET_KEY=$SENTRY_SECRET_KEY

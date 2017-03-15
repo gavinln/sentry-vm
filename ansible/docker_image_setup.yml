@@ -1,0 +1,12 @@
+---
+- name: pull redis image
+  docker_image:
+      name: redis
+
+- name: pull postgres image
+  docker_image:
+      name: postgres
+
+- name: pull sentry image
+  docker_image:
+      name: sentry:8.13

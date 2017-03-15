@@ -1,0 +1,3 @@
+---
+- name: Install lxde
+  apt: name=lxde state=installed
